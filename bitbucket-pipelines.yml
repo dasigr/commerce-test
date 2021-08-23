@@ -26,6 +26,19 @@ stepdefinitions:
         # store any generates images and videos as artifacts
         - cypress/screenshots/**
         - cypress/videos/**
+  - deploy-to-qa: &deploy-to-qa
+      name: Deploy to QA
+      deployment: test
+      caches:
+        - node
+        - cypress
+      script:
+        - npx @bahmutov/print-env BITBUCKET
+        - npx @bahmutov/print-env CYPRESS
+        - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
+      artifacts:
+        - cypress/screenshots/**
+        - cypress/videos/**
   - deploy-to-staging: &deploy-to-staging
       name: Deploy to Staging
       deployment: staging
@@ -58,6 +71,7 @@ stepdefinitions:
 pipelines:
   default:
     - step: *build-app
+    - step: *deploy-to-qa
     - parallel:
       # run N steps in parallel
       - step:
