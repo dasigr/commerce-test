@@ -71,7 +71,6 @@ stepdefinitions:
 pipelines:
   default:
     - step: *build-app
-    - step: *deploy-to-qa
     - parallel:
       # run N steps in parallel
       - step:
@@ -80,6 +79,7 @@ pipelines:
           <<: *e2e
       - step:
           <<: *e2e
+    - step: *deploy-to-qa
   tags:
     'v*':
       - step: *build-app
