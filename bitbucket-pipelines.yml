@@ -23,7 +23,6 @@ stepdefinitions:
         - npx @bahmutov/print-env CYPRESS
         - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
       artifacts:
-        # store any generates images and videos as artifacts
         - cypress/screenshots/**
         - cypress/videos/**
   - deploy-to-qa: &deploy-to-qa
@@ -71,6 +70,7 @@ stepdefinitions:
 pipelines:
   default:
     - step: *build-app
+    - step: *deploy-to-qa
     - parallel:
       # run N steps in parallel
       - step:
@@ -79,7 +79,6 @@ pipelines:
           <<: *e2e
       - step:
           <<: *e2e
-    - step: *deploy-to-qa
   tags:
     'v*':
       - step: *build-app
