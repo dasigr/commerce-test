@@ -25,7 +25,7 @@
     "cy:version": "cypress version",
     "cy:cache:list": "cypress cache list",
     "cy:run": "cypress run",
-    "cy:run:record": "cypress run --record --key e128f49c-fdc1-48e4-a939-b3b7ef319b4a",
+    "cy:run:record": "cypress run --record",
     "cy:open": "cypress open",
     "ci:set-port": "node ./scripts/set-port"
   },
