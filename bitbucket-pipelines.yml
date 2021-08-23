@@ -10,7 +10,7 @@ e2e: &e2e
     - cypress
   script:
     - npx @bahmutov/print-env BITBUCKET
-    - npm run start:ci &
+    - npx @bahmutov/print-env CYPRESS
     - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
   artifacts:
     # store any generates images and videos as artifacts

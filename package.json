@@ -40,9 +40,8 @@
   },
   "homepage": "https://github.com/a5project/commerce_test",
   "devDependencies": {
+    "@bahmutov/print-env": "^2.1.2",
     "cypress": "^8.3.0"
   },
-  "dependencies": {
-    "@bahmutov/print-env": "^2.1.2"
-  }
+  "dependencies": {}
 }
