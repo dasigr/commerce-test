@@ -1,26 +1,10 @@
 image: cypress/base:10
 options:
   max-time: 10
-  
-# job definition for running E2E tests in parallel
-e2e: &e2e
-  name: E2E tests
-  caches:
-    - node
-    - cypress
-  script:
-    - npx @bahmutov/print-env BITBUCKET
-    - npx @bahmutov/print-env CYPRESS
-    - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
-  artifacts:
-    # store any generates images and videos as artifacts
-    - cypress/screenshots/**
-    - cypress/videos/**
-    
-pipelines:
-  default:
-  - step:
-      name: Install dependencies
+
+stepdefinitions:
+  - build-app: &build-app
+      name: Build Application
       caches:
         - npm
         - cypress
@@ -29,14 +13,65 @@ pipelines:
         - npm ci
         # let's see the environment variables right away
         - npx @bahmutov/print-env BITBUCKET
-  - parallel:
-    # run N steps in parallel
-    - step:
-        <<: *e2e    
-    - step:
-        <<: *e2e
-    - step:
-        <<: *e2e
+  - e2e: &e2e
+      name: E2E tests
+      caches:
+        - node
+        - cypress
+      script:
+        - npx @bahmutov/print-env BITBUCKET
+        - npx @bahmutov/print-env CYPRESS
+        - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
+      artifacts:
+        # store any generates images and videos as artifacts
+        - cypress/screenshots/**
+        - cypress/videos/**
+  - deploy-to-staging: &deploy-to-staging
+      name: Deploy to Staging
+      deployment: staging
+      trigger: manual
+      caches:
+        - node
+        - cypress
+      script:
+        - npx @bahmutov/print-env BITBUCKET
+        - npx @bahmutov/print-env CYPRESS
+        - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
+      artifacts:
+        - cypress/screenshots/**
+        - cypress/videos/**
+  - deploy-to-production: &deploy-to-production
+      name: Deploy to Production
+      deployment: production
+      trigger: manual
+      caches:
+        - node
+        - cypress
+      script:
+        - npx @bahmutov/print-env BITBUCKET
+        - npx @bahmutov/print-env CYPRESS
+        - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
+      artifacts:
+        - cypress/screenshots/**
+        - cypress/videos/**
+
+pipelines:
+  default:
+    - step: *build-app
+    - parallel:
+      # run N steps in parallel
+      - step:
+          <<: *e2e    
+      - step:
+          <<: *e2e
+      - step:
+          <<: *e2e
+  tags:
+    'v*':
+      - step: *build-app
+      - step: *deploy-to-staging
+      - step: *deploy-to-production
+
 definitions:
   caches:
     npm: $HOME/.npm
