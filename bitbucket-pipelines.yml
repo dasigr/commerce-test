@@ -11,6 +11,7 @@ stepdefinitions:
         - node
       script:
         - npm ci
+        - npm install change --save-dev
         # let's see the environment variables right away
         - npx @bahmutov/print-env BITBUCKET
   - deploy-to-qa: &deploy-to-qa
