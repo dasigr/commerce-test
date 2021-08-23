@@ -13,18 +13,6 @@ stepdefinitions:
         - npm ci
         # let's see the environment variables right away
         - npx @bahmutov/print-env BITBUCKET
-  - e2e: &e2e
-      name: E2E tests
-      caches:
-        - node
-        - cypress
-      script:
-        - npx @bahmutov/print-env BITBUCKET
-        - npx @bahmutov/print-env CYPRESS
-        - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
-      artifacts:
-        - cypress/screenshots/**
-        - cypress/videos/**
   - deploy-to-qa: &deploy-to-qa
       name: Deploy to QA
       deployment: test
@@ -71,14 +59,6 @@ pipelines:
   default:
     - step: *build-app
     - step: *deploy-to-qa
-    - parallel:
-      # run N steps in parallel
-      - step:
-          <<: *e2e    
-      - step:
-          <<: *e2e
-      - step:
-          <<: *e2e
   tags:
     'v*':
       - step: *build-app
