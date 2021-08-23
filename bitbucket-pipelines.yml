@@ -1,0 +1,43 @@
+image: cypress/base:10
+options:
+  max-time: 10
+  
+# job definition for running E2E tests in parallel
+e2e: &e2e
+  name: E2E tests
+  caches:
+    - node
+    - cypress
+  script:
+    - npx @bahmutov/print-env BITBUCKET
+    - npm run start:ci &
+    - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
+  artifacts:
+    # store any generates images and videos as artifacts
+    - cypress/screenshots/**
+    - cypress/videos/**
+    
+pipelines:
+  default:
+  - step:
+      name: Install dependencies
+      caches:
+        - npm
+        - cypress
+        - node
+      script:
+        - npm ci
+        # let's see the environment variables right away
+        - npx @bahmutov/print-env BITBUCKET
+  - parallel:
+    # run N steps in parallel
+    - step:
+        <<: *e2e    
+    - step:
+        <<: *e2e
+    - step:
+        <<: *e2e
+definitions:
+  caches:
+    npm: $HOME/.npm
+    cypress: $HOME/.cache/Cypress
