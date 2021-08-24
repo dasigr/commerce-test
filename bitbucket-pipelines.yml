@@ -11,11 +11,9 @@ stepdefinitions:
         - node
       script:
         - npm ci
-        - npm install chance --save-dev
         # let's see the environment variables right away
         - npx @bahmutov/print-env BITBUCKET
-        - pwd
-        - ls -la
+        - ls -la ./node_modules
   - deploy-to-qa: &deploy-to-qa
       name: Deploy to QA
       deployment: test
