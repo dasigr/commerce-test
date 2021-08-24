@@ -1,4 +1,4 @@
-image: cypress/base:10
+image: cypress/base:14.15.4
 options:
   max-time: 10
 
@@ -14,6 +14,8 @@ stepdefinitions:
         - npm install chance --save-dev
         # let's see the environment variables right away
         - npx @bahmutov/print-env BITBUCKET
+        - pwd
+        - ls -la
   - deploy-to-qa: &deploy-to-qa
       name: Deploy to QA
       deployment: test
@@ -59,7 +61,7 @@ stepdefinitions:
 pipelines:
   default:
     - step: *build-app
-    - step: *deploy-to-qa
+    # - step: *deploy-to-qa
   tags:
     'v*':
       - step: *build-app
