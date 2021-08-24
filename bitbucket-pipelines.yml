@@ -11,9 +11,12 @@ stepdefinitions:
         - node
       script:
         - npm ci
-        # let's see the environment variables right away
         - npx @bahmutov/print-env BITBUCKET
-        - ls -la ./node_modules
+        - npx @bahmutov/print-env CYPRESS
+        - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
+      artifacts:
+        - cypress/screenshots/**
+        - cypress/videos/**
   - deploy-to-qa: &deploy-to-qa
       name: Deploy to QA
       deployment: test
