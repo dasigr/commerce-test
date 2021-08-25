@@ -5,7 +5,7 @@ options:
 stepdefinitions:
   - build-app: &build-app
       name: Build Application
-      image: a5project/cypress:0.0.1
+      image: dasigr/cypress-base:latest
       caches:
         - npm
         - cypress
