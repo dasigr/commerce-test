@@ -1,4 +1,4 @@
-image: dasigr/cypress-base:14.15.4
+image: dasigr/cypress-base:latest
 options:
   max-time: 10
 
