@@ -2,16 +2,14 @@
 
 Test eCommerce functionalities.
 
-## Docker
+## Setup
 
-`docker image build -t dasigr/cypress-base .`
+Setup local environment variables.
 
-`docker-compose up -d`
-
-## Bitbucket Pipeline
+`cp example.env .env`
 
 ## Testing
 
-`docker-compose exec -it e2e npm run e2e:record`
+Increase BITBUCKET_BUILD_NUMBER on every run.
 
-`docker container run -d -it dasigr/cypress-base:latest`
+`docker-compose up -d`

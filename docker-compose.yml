@@ -2,14 +2,14 @@ version: "3.7"
 
 services:
   e2e:
-    image: dasigr/cypress-base:latest
+    image: cypress/base:14.15.4
+    working_dir: /app
     volumes:
-      - ./cypress.json:/app/cypress.json
-      - ./cypress:/app/cypress
+      - .:/app
     environment:
       CYPRESS_PROJECT_ID: ${CYPRESS_PROJECT_ID}
       CYPRESS_RECORD_KEY: ${CYPRESS_RECORD_KEY}
       CYPRESS_BASE_URL: ${CYPRESS_BASE_URL}
     command: >
       sh -c "npm ci && 
-             npm run e2e:record -- --parallel --ci-build-id ${BITBUCKET_BUILD_NUMBER}"
+            npm run e2e:record -- --parallel --ci-build-id ${BITBUCKET_BUILD_NUMBER}"
