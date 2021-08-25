@@ -1,0 +1,41 @@
+{
+  "name": "cypress-base",
+  "version": "1.0.0",
+  "description": "Base Docker image for Cypress.",
+  "main": "index.js",
+  "scripts": {
+    "e2e": "cypress run",
+    "e2e:chrome": "cypress run --browser chrome",
+    "e2e:record": "cypress run --record",
+    "e2e:record:chrome": "cypress run --record --browser chrome",
+    "e2e:record:edge": "cypress run --record --browser edge",
+    "e2e:record:firefox": "cypress run --record --browser firefox",
+    "e2e:record:parallel": "cypress run --record --parallel",
+    "cy:verify": "cypress verify",
+    "cy:info": "cypress info",
+    "cy:version": "cypress version",
+    "cy:cache:list": "cypress cache list",
+    "cy:run": "cypress run",
+    "cy:run:record": "cypress run --record",
+    "cy:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a5project/cypress.git"
+  },
+  "keywords": [
+    "cypress",
+    "testing"
+  ],
+  "author": "Romualdo Dasig <dasig.rg@a5project.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a5project/cypress/issues"
+  },
+  "homepage": "https://github.com/a5project/cypress#readme",
+  "dependencies": {
+    "@bahmutov/print-env": "^2.1.2",
+    "chance": "^1.1.7",
+    "cypress": "^8.3.0"
+  }
+}
