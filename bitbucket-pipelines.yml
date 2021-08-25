@@ -1,17 +1,16 @@
-image: cypress/base:14.15.4
+image: dasigr/cypress-base:$CYPRESS_IMAGE_TAG
 options:
   max-time: 10
 
 stepdefinitions:
   - build-app: &build-app
       name: Build Application
-      image: dasigr/cypress-base:latest
+      image: dasigr/cypress-base:$CYPRESS_IMAGE_TAG
       caches:
         - npm
         - cypress
         - node
       script:
-        - ls -la
         - npm ci
         - npx @bahmutov/print-env BITBUCKET
         - npx @bahmutov/print-env CYPRESS
@@ -25,7 +24,6 @@ stepdefinitions:
         - node
         - cypress
       script:
-        - ls -la
         - npx @bahmutov/print-env BITBUCKET
         - npx @bahmutov/print-env CYPRESS
         - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
