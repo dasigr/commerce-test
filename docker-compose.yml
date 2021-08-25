@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   environment:
+
+  # mysql:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   environment:
+
+  e2e:
+    image: a5project/cypress:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      BITBUCKET_BUILD_NUMBER: 10
+      CYPRESS_PROJECT_ID: 1y68i3
+      CYPRESS_RECORD_KEY: 42f49b63-e2c7-4c6f-9c47-6ef922519139
+      CYPRESS_BASE_URL: https://example.cypress.io

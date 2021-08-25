@@ -1,9 +1,7 @@
 # Commerce Test
 
-Test eCommerce website.
+Test eCommerce functionalities.
 
-## Commands
+## Docker
 
-npm run cypress:open
-
-npm run cypress:run
+## Bitbucket Pipeline
