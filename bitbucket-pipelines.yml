@@ -11,7 +11,7 @@ stepdefinitions:
         - cypress
         - node
       script:
-        - npm ci
+        # - npm ci
         - npx @bahmutov/print-env BITBUCKET
         - npx @bahmutov/print-env CYPRESS
         - npm run e2e:record -- --parallel --ci-build-id $BITBUCKET_BUILD_NUMBER
