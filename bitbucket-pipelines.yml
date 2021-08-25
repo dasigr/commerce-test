@@ -62,7 +62,7 @@ stepdefinitions:
 pipelines:
   default:
     - step: *build-app
-    # - step: *deploy-to-qa
+    - step: *deploy-to-qa
   tags:
     'v*':
       - step: *build-app
