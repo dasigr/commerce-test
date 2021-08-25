@@ -8,7 +8,7 @@ services:
       - ./cypress.json:/app/cypress.json
       - ./cypress:/app/cypress
     environment:
-      CYPRESS_PROJECT_ID: 1y68i3
-      CYPRESS_RECORD_KEY: 42f49b63-e2c7-4c6f-9c47-6ef922519139
-      CYPRESS_BASE_URL: https://example.cypress.io
-    command: npm run e2e:record -- --parallel --ci-build-id 15
+      CYPRESS_PROJECT_ID: ${CYPRESS_PROJECT_ID}
+      CYPRESS_RECORD_KEY: ${CYPRESS_RECORD_KEY}
+      CYPRESS_BASE_URL: ${CYPRESS_BASE_URL}
+    command: npm run e2e:record -- --parallel --ci-build-id 20
