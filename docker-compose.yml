@@ -4,11 +4,10 @@ services:
   e2e:
     image: dasigr/cypress-base
     volumes:
-      - ./.env:/app/.env
       - ./cypress.json:/app/cypress.json
       - ./cypress:/app/cypress
     environment:
       CYPRESS_PROJECT_ID: ${CYPRESS_PROJECT_ID}
       CYPRESS_RECORD_KEY: ${CYPRESS_RECORD_KEY}
       CYPRESS_BASE_URL: ${CYPRESS_BASE_URL}
-    command: npm run e2e:record -- --parallel --ci-build-id 20
+    command: npm run e2e:record -- --parallel --ci-build-id ${BITBUCKET_BUILD_NUMBER}
