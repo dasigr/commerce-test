@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   e2e:
-    image: dasigr/cypress-base
+    image: dasigr/cypress-base:${CYPRESS_IMAGE_TAG}
     volumes:
       - ./cypress.json:/app/cypress.json
       - ./cypress:/app/cypress
