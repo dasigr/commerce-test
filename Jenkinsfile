@@ -2,8 +2,8 @@ pipeline {
     
     agent {
         docker {
-            image 'node:lts-bullseye-slim' 
-            args '-p 3000:3000' 
+            image 'node:lts-buster-slim'
+            args '-p 3000:3000'
         }
     }
     
@@ -12,6 +12,8 @@ pipeline {
             steps {
                 echo 'Building the application...'
                 sh 'node --version'
+                sh 'npm install'
+                sh 'npm run cy:verify'
             }
         }
         
