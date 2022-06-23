@@ -8,6 +8,8 @@ Node Verion Manager (NVM)
 
 ## Setup
 
+`nvm use`
+
 Setup local environment variables.
 
 `cp example.env .env`
