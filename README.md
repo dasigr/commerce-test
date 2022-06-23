@@ -2,6 +2,10 @@
 
 Test eCommerce functionalities.
 
+## Prerequisites
+
+Node Verion Manager (NVM)
+
 ## Setup
 
 Setup local environment variables.
