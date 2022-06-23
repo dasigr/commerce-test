@@ -10,6 +10,8 @@ Node Verion Manager (NVM)
 
 `nvm use`
 
+`npm install`
+
 Setup local environment variables.
 
 `cp example.env .env`
