@@ -1,6 +1,6 @@
 <?php
 
-namespace Zubair\PhpTesting;
+namespace Dasigr\CommerceTest;
 
 use InvalidArgumentException;
 
