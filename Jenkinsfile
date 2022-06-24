@@ -2,17 +2,21 @@ pipeline {
     
     agent {
         docker {
-            image 'node:lts-buster-slim'
+            image 'cypress/base:16.14.2'
             args '-p 3000:3000'
         }
+    }
+    
+    environment {
+        HOME = "${env.WORKSPACE}"
+        npm_config_cache = 'npm-cache'
     }
     
     stages {
         stage("build") {
             steps {
                 echo 'Building the application...'
-                sh 'node --version'
-                sh 'npm install'
+                sh 'npm ci'
                 sh 'npm run cy:verify'
             }
         }
