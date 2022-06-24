@@ -3,3 +3,7 @@
 /cypress/videos/**
 cypress.*.json
 /.env
+
+vendor/
+.idea/
+composer.lock
