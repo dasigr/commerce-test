@@ -2,32 +2,30 @@ pipeline {
     
     agent {
         docker {
-            image 'cypress/base:16.14.2'
-            args '-p 3000:3000'
+            image 'drupal:php7.4-fpm-bullseye'
         }
-    }
-    
-    environment {
-        HOME = "${env.WORKSPACE}"
-        npm_config_cache = 'npm-cache'
     }
     
     stages {
-        stage("build") {
+        stage("Build") {
             steps {
                 echo 'Building the application...'
-                sh 'npm ci'
-                sh 'npm run cy:verify'
+                sh 'php --version'
+                sh 'pwd'
+                sh 'ls -la'
+                sh 'composer --version'
+                sh 'composer install'
+                sh './vendor/bin/phpunit --verbose tests'
             }
         }
         
-        stage("test") {
+        stage("Test") {
             steps {
                 echo 'Testing the application...'
             }
         }
         
-        stage("deploy") {
+        stage("Deliver") {
             steps {
                 echo 'Deploying the appliation...'
             }
