@@ -23,3 +23,5 @@ Increase BITBUCKET_BUILD_NUMBER on every run.
 `docker-compose up -d`
 
 ## Jenkins
+
+Build only the dev, master, and feature branches.
