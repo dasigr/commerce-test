@@ -21,3 +21,5 @@ Setup local environment variables.
 Increase BITBUCKET_BUILD_NUMBER on every run.
 
 `docker-compose up -d`
+
+## Jenkins
