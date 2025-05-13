@@ -24,4 +24,4 @@ Increase BITBUCKET_BUILD_NUMBER on every run.
 
 ## Jenkins
 
-Build only the dev, master, and feature branches.
+Build only the dev, master, and feature branches..
